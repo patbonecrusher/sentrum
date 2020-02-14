@@ -34,8 +34,17 @@ const createWindow = (): void => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
+  let devtoolpath='';
+  switch (process.platform) {
+    case 'darwin': devtoolpath = '/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0'; break;
+    case 'linux': devtoolpath = '.config/google-chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0'; break;
+
+  }
+
+  console.log(process.platform)
+
   BrowserWindow.addDevToolsExtension(
-    path.join(os.homedir(), '/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0')
+    path.join(os.homedir(), devtoolpath)
   )
 
   // Emitted when the window is closed.
