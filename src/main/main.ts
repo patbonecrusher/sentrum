@@ -1,4 +1,7 @@
 import { app, BrowserWindow } from 'electron';
+import path from 'path';
+import os from 'os';
+
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -10,9 +13,10 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow;
 
-const createWindow = () => {
+const createWindow = (): void => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    darkTheme: true,
     height: 600,
     width: 800,
   });
@@ -22,6 +26,10 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  BrowserWindow.addDevToolsExtension(
+    path.join(os.homedir(), '/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0')
+  )
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {

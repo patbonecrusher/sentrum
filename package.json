@@ -4,10 +4,15 @@
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "./.webpack/main",
+  "repository": "git@github.com:patbonecrusher/sentrum.git",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "make:all": "npm run make:mac & npm run mac:linux & npm run mac:win",
+    "make:mac": "electron-forge make --platform=darwin",
+    "make:linux": "electron-forge make --platform=linux --arch=ia32,x64",
+    "make:win": "electron-forge make --platform=win32 --arch=ia32,x64",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts ."
   },
