@@ -1,7 +1,32 @@
+
+/* Default variables */
+:root {
+  --blue-color: blue;
+  --green-color: green;
+}
+
+[data-theme^="light"],
+[data-theme] [data-theme^="light"] {
+  --main-color: #000;
+  --background-color: #fff;
+  --box-color: lightgrey;
+}
+
+[data-theme^="dark"],
+[data-theme] [data-theme^="dark"],
+[data-theme="light-dark-sidebar"] nav {
+  --blue-color: #1da1f2;
+  --main-color: #fff;
+  --background-color: #000;
+  --sidebar-color: #333;
+  --box-color: grey;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
-  color: white;
+  color: var(--main-color);
+  background-color: var(--background-color);
 }

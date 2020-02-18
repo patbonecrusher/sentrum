@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
 
+    <script>
+      window.__setTheme = () => {
+        let userTheme = localStorage.user_theme
+        let OSTheme = localStorage.os_theme
+        let defaultTheme = 'light'
+  
+        document.documentElement.setAttribute(
+          'data-theme',
+          userTheme || OSTheme || defaultTheme,
+        )
+      }
+  
+      __setTheme()
+    </script>
+    
   </head>
   <body>
     <div id="root" />

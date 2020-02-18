@@ -2,7 +2,8 @@ import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import os from 'os';
 
-declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
+declare const MAIN_WINDOW_WEBPACK_ENTRY: string | undefined;
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string | undefined;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -13,12 +14,18 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow;
 
+console.log(MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY);
 const createWindow = (): void => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    darkTheme: true,
     height: 600,
     width: 800,
+    webPreferences: {
+      // nodeIntegration: false, // is default value after Electron v5
+      // contextIsolation: true, // protect against prototype pollution
+      // enableRemoteModule: false, // turn off remote
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY // use a preload script
+    }
   });
 
   // and load the index.html of the app.
@@ -27,8 +34,17 @@ const createWindow = (): void => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
+  let devtoolpath='';
+  switch (process.platform) {
+    case 'darwin': devtoolpath = '/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0'; break;
+    case 'linux': devtoolpath = '.config/google-chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0'; break;
+
+  }
+
+  console.log(process.platform)
+
   BrowserWindow.addDevToolsExtension(
-    path.join(os.homedir(), '/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0')
+    path.join(os.homedir(), devtoolpath)
   )
 
   // Emitted when the window is closed.
