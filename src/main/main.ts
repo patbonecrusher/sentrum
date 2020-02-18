@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from 'electron';
+import tb from './touchbar';
 import path from 'path';
 import os from 'os';
 
@@ -30,6 +31,22 @@ const createWindow = (): void => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+	//var menu = Menu.buildFromTemplate(template)
+	//var touchBarMenu = require('./touchbar-menu')
+	switch (process.platform) {
+		case 'darwin':
+			// Menu.setApplicationMenu(menu)
+			mainWindow.setTouchBar(tb)
+			break
+		case 'win32':
+			// mainWindow.setMenu(menu)
+			break
+		case 'linux':
+			// Menu.setApplicationMenu(menu)
+			// mainWindow.setMenu(menu)
+	}
+
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
@@ -77,6 +94,8 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.

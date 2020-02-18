@@ -8,12 +8,6 @@ console.log('booboo');
 
 
 
-switch (process.platform) {
-    case 'darwin': load_mac_theme(); break;
-    case 'linux': load_linux_theme(); break;
-
-}
-
 function load_mac_theme () {
     const { systemPreferences } = remote
     const setOSTheme = () => {
@@ -48,3 +42,9 @@ function load_linux_theme () {
     }
     setOSTheme()
 }
+
+switch (process.platform) {
+    case 'darwin': load_mac_theme(); break;
+    case 'linux': load_linux_theme(); break;
+}
+
