@@ -1,7 +1,10 @@
 import { app, BrowserWindow } from 'electron';
 import tb from './touchbar';
-import path from 'path';
-import os from 'os';
+import { createMenu } from "./menu";
+
+import { is } from "electron-util"
+import debug from 'electron-debug'
+debug();
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string | undefined;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string | undefined;
@@ -15,7 +18,6 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow;
 
-console.log(MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY);
 const createWindow = (): void => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -32,38 +34,9 @@ const createWindow = (): void => {
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-	//var menu = Menu.buildFromTemplate(template)
-	//var touchBarMenu = require('./touchbar-menu')
-	switch (process.platform) {
-		case 'darwin':
-			// Menu.setApplicationMenu(menu)
-			mainWindow.setTouchBar(tb)
-			break
-		case 'win32':
-			// mainWindow.setMenu(menu)
-			break
-		case 'linux':
-			// Menu.setApplicationMenu(menu)
-			// mainWindow.setMenu(menu)
-	}
-
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-
-  let devtoolpath='';
-  switch (process.platform) {
-    case 'darwin': devtoolpath = '/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0'; break;
-    case 'linux': devtoolpath = '.config/google-chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.4.0_0'; break;
-
-  }
-
-  console.log(process.platform)
-
-  BrowserWindow.addDevToolsExtension(
-    path.join(os.homedir(), devtoolpath)
-  )
-
+  createMenu(mainWindow);
+  if (is.macos) mainWindow.setTouchBar(tb);
+  
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows

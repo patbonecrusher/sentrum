@@ -9,9 +9,9 @@ console.log('booboo');
 
 
 function load_mac_theme () {
-    const { systemPreferences } = remote
+    const { nativeTheme, systemPreferences } = remote
     const setOSTheme = () => {
-        const theme = systemPreferences.isDarkMode() ? 'dark' : 'light'
+        const theme = nativeTheme.shouldUseDarkColors ? 'dark' : 'light'
         window.localStorage.os_theme = theme
         //
         // Defined in index.html, so undefined when launching the app.
