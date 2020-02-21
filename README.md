@@ -2,9 +2,16 @@
 
 ## Getting started
 
+Clone this repo
+
+```bash
+yarn
+yarn start
+```
+
 ### macos
 
-#### pre-requisites
+#### pre-requisites to compile into apps
 
 ```shell
 brew install wine64
@@ -22,6 +29,11 @@ brew install rpmbuild
 * [electron debug](https://github.com/sindresorhus/electron-debug)
 * [electron is dev](https://github.com/sindresorhus/electron-is-dev)
 * [electron util](https://github.com/sindresorhus/electron-util)
+
+## Contributing
+
+Please follow the [git flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) model.
+Make pull request to the develop branch.
 
 ## Notes
 
