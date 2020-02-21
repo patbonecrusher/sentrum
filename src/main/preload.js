@@ -8,16 +8,10 @@ console.log('booboo');
 
 
 
-switch (process.platform) {
-    case 'darwin': load_mac_theme(); break;
-    case 'linux': load_linux_theme(); break;
-
-}
-
 function load_mac_theme () {
-    const { systemPreferences } = remote
+    const { nativeTheme, systemPreferences } = remote
     const setOSTheme = () => {
-        const theme = systemPreferences.isDarkMode() ? 'dark' : 'light'
+        const theme = nativeTheme.shouldUseDarkColors ? 'dark' : 'light'
         window.localStorage.os_theme = theme
         //
         // Defined in index.html, so undefined when launching the app.
@@ -48,3 +42,9 @@ function load_linux_theme () {
     }
     setOSTheme()
 }
+
+switch (process.platform) {
+    case 'darwin': load_mac_theme(); break;
+    case 'linux': load_linux_theme(); break;
+}
+
