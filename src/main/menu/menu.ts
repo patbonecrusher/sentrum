@@ -1,7 +1,7 @@
 import { Menu } from "electron"
 import { createMacMenu } from "./macos-menu"
 import { createLinuxMenu } from "./linux-menu"
-// import { createWindowsMenu } from "./windows-menu"
+import { createWindowsMenu } from "./windows-menu"
 import { is } from "electron-util"
 
 /**
@@ -22,8 +22,8 @@ export function createMenu(window: Electron.BrowserWindow): void {
         window.setMenu(menu)
     } else if (is.windows) {
         // on windows, the menu goes on the window
-        // const template = createWindowsMenu(window)
-        // const menu = Menu.buildFromTemplate(template)
-        // window.setMenu(menu)
+        const template = createWindowsMenu(window)
+        const menu = Menu.buildFromTemplate(template)
+        window.setMenu(menu)
     }
 }

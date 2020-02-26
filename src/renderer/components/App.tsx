@@ -2,7 +2,8 @@
 import * as React from "react";
 import {hot} from "react-hot-loader/root";
 
-function activateLasers(e: any): void {
+/*eslint @typescript-eslint/camelcase: ["error", {allow: ["os_theme"]}]*/
+function activateLasers(e: React.MouseEvent<HTMLButtonElement>): void {
     e.preventDefault();
     console.log('The link was clicked.');
 
@@ -12,17 +13,15 @@ function activateLasers(e: any): void {
         window.localStorage.os_theme = 'light'
 
     window.__setTheme()
- }
+}
 
-
-export default hot((): JSX.Element => 
-    (
-        <div>
-          <h1>
-            Your Electron App as
-          </h1>
-          <button onClick={activateLasers}>
-            Activate Lasers
-          </button>
-        </div>
-    ));
+export default hot((): JSX.Element => (
+    <div>
+      <h1>
+        Your Electron App as
+      </h1>
+      <button onClick={activateLasers}>
+        Activate Lasers
+      </button>
+    </div>
+));
