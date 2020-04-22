@@ -5,6 +5,8 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import '../../public/index.scss';
 
+import './global.css'
+
 console.log('👋 This message is being logged by "renderer.tsx", included via webpack');
 
 ReactDOM.render(<App/>, document.getElementById('root'));
