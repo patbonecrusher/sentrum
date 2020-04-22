@@ -23,6 +23,7 @@ const createWindow = (): void => {
   mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
+    titleBarStyle: is.macos ? 'hidden' : 'default',
     webPreferences: {
       // nodeIntegration: false, // is default value after Electron v5
       // contextIsolation: true, // protect against prototype pollution
