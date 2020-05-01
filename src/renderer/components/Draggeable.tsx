@@ -51,7 +51,7 @@ const Draggeable: React.FC<DraggeableProps> = props => {
             window.addEventListener('mouseup', handleMouseUp);
         }
 
-        return () => {
+        return (): void => {
             window.removeEventListener("mousemove", handleMouseMove)
             window.removeEventListener('mouseup', handleMouseUp);
         }

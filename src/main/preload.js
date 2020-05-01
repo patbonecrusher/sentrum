@@ -12,7 +12,7 @@ function load_mac_theme () {
     const { nativeTheme, systemPreferences } = remote
     const setOSTheme = () => {
         const theme = nativeTheme.shouldUseDarkColors ? 'dark' : 'light'
-        window.localStorage.os_theme = theme
+        window.localStorage.os_theme = 'material-dark' //theme
         //
         // Defined in index.html, so undefined when launching the app.
         // Will be defined for `systemPreferences.subscribeNotification` callback.

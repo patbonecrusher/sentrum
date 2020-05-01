@@ -105,7 +105,6 @@ export default hot((): JSX.Element => (<App/>));
 const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
-  background-color: gray;
   ${'' /* background-color: red;
   display: flex;
   justify-content: center; */}
