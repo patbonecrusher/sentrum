@@ -20,7 +20,7 @@ const Draggeable: React.FC<DraggeableProps> = props => {
     const [origin, setOrigin] = React.useState<Position>(POSITION);
     const [translation, setTranslation] = React.useState<Position>(POSITION);
 
-    const handleMouseDown = (ev: MouseEvent): void => {
+    const handleMouseDown = (ev: React.MouseEvent): void => {
         setIsDragging(true);
         console.log(`cx:${ev.clientX}, cy:${ev.clientY}`)
         setOrigin({x: ev.clientX, y: ev.clientY});

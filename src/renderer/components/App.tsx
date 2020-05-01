@@ -3,6 +3,8 @@ import * as React from "react";
 import {hot} from "react-hot-loader/root";
 import Draggeable from "./Draggeable";
 import styled from 'styled-components';
+import Bezier from './Bezier';
+import TitleBar from "./TitleBar";
 
 /*eslint @typescript-eslint/camelcase: ["error", {allow: ["os_theme"]}]*/
 function activateLasers(e: React.MouseEvent<HTMLButtonElement>): void {
@@ -23,11 +25,25 @@ interface Position {
   y: number;
 }
 
+const path = (
+  <path
+    d={`
+      M 25,25
+      C 100,50 25,75 25,100
+      C 25,125 300,150 25,175
+    `}
+    fill="none"
+    stroke="hotpink"
+    strokeWidth={2}
+  />
+)
+
 const App: React.FC = () => {
   const [apos, setApos] = React.useState<Position>({x:0,y:0});
   const [bpos, setBpos] = React.useState<Position>({x:0,y:0});
   const [mpos, setMpos] = React.useState<Position>({x:0,y:0});
   const [isDragging, setIsDragging] = React.useState<boolean>(false);
+  
 
   const handleDrag = React.useCallback((translation, id): void => {
     setIsDragging(true);
@@ -52,7 +68,9 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Container onMouseMove={handleMouseMove} onClick={handleMouseMove}>
+    <div>
+      <TitleBar />
+      <Container onMouseMove={handleMouseMove} onClick={handleMouseMove}>
       <Draggeable id={1}
           onDrag={handleDrag} 
           onDragEnd={handleDragEnd}
@@ -70,8 +88,15 @@ const App: React.FC = () => {
         {`bbb x: ${mpos.x} y: ${mpos.y}, x: ${bpos.x} y: ${bpos.y}`}
         </Goodie>
       </Draggeable> 
-
+      {/* <Bezier viewBoxWidth={ 250} viewBoxHeight = { 250} /> */}
+      <svg
+    viewBox="0 0 200 200"
+    style={{ maxHeight: 400 }}
+  >
+    {path}
+  </svg>
     </Container>
+    </div>
   );
 };
 
@@ -80,7 +105,7 @@ export default hot((): JSX.Element => (<App/>));
 const Container = styled.div`
   width: 100vw;
   min-height: 100vh;
-  background-color: red;
+  background-color: gray;
   ${'' /* background-color: red;
   display: flex;
   justify-content: center; */}

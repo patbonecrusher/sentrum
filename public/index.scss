@@ -31,3 +31,20 @@ body {
   color: var(--main-color);
   background-color: var(--background-color);
 }
+
+header {
+  position: relative;
+  height: var(--darwin-title-bar-height);//34px;
+  //font-size: 16px;
+  line-height: 1.5;
+  vertical-align: middle;
+  text-align: center;
+  cursor: default;
+  user-select:none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  flex: 0 0 auto;
+  background-color: var(--sidebar-color);
+  //background: linear-gradient(to bottom, #3b3f46 0%, #2b2e33 100%);
+    //border-bottom: 1px solid #000;
+}
