@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const { remote } = require('electron')
+window.ipcRenderer = require('electron').ipcRenderer;
 
 console.log('booboo');
 

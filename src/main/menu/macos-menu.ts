@@ -10,6 +10,7 @@ export function createMacMenu(
 
     const about: Electron.MenuItemConstructorOptions = { label: `About ${name}`, role: "about" };
     const separator: Electron.MenuItemConstructorOptions = { type: "separator" };
+    const settings: Electron.MenuItemConstructorOptions = { label: `Settings`, accelerator: "Command+,", click: () => { window.webContents.send('side:preferences', {msg:'hello from main process'}) }};
     const hide: Electron.MenuItemConstructorOptions = { label: `Hide ${name}`, accelerator: "Command+H", role: "hide" };
     const hideOthers: Electron.MenuItemConstructorOptions = { label: "Hide Others", accelerator: "Command+Option+H", role: "hideOthers" };
     const showAll: Electron.MenuItemConstructorOptions = { label: "Show All", role: "unhide" };
@@ -17,7 +18,7 @@ export function createMacMenu(
 
     const appMenu: Electron.MenuItemConstructorOptions = {
         label: name,
-        submenu: [ about, separator, hide, hideOthers, showAll, separator, quit],
+        submenu: [ about, separator, settings, separator, hide, hideOthers, showAll, separator, quit],
     }
 
     const viewMenu: Electron.MenuItemConstructorOptions = {

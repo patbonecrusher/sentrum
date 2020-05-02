@@ -3,5 +3,6 @@ declare global {
     interface Window {
         /** Switch the theme */
         __setTheme(): void;
+        ipcRenderer: any;
     }
 }

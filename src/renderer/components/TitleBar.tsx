@@ -11,6 +11,7 @@ const TitleBar: React.FC = () => {
 }
 
 const TitleBarContainer = styled.header`
+    flex: 0 0 auto;
     position: relative;
     height: var(--darwin-title-bar-height);//34px;
     line-height: 1.5;
