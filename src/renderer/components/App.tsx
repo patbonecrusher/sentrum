@@ -5,6 +5,25 @@ import styled from 'styled-components';
 import Bezier from './Bezier';
 import TitleBar from "./TitleBar";
 //import { ipcRenderer } from 'electron';
+import Store from 'electron-store'  ;
+
+type StoreType = {
+  isRainbow: boolean;
+  unicorn?: string;
+}
+
+const store = new Store<StoreType>({
+  defaults: {
+    isRainbow: true
+  }
+});
+
+console.log(store.get('isRainbow'));
+
+store.set('project.foo', {abc:"def"});
+
+store.set('unicorn', '🦄');
+console.log(store.get('unicorn'));
 
 import {
   BrowserRouter as Router,
@@ -13,7 +32,8 @@ import {
   Link
 } from "react-router-dom";
 import Settings from "./Settings";
-import Projects from "./Projects";
+import { Projects } from "./Projects";
+
 
 /*eslint @typescript-eslint/camelcase: ["error", {allow: ["os_theme"]}]*/
 function activateLasers(e: React.MouseEvent<HTMLButtonElement>): void {
@@ -47,7 +67,7 @@ const App: React.FC = () => {
   });
 
 
-  const MainContent = (props) => {
+  const MainContent = (props): JSX.Element => {
     if (props.settingsVisible) {
       return (<Settings />)
     } else {
@@ -57,7 +77,7 @@ const App: React.FC = () => {
 
   return (
     <Wrapper>
-      <TitleBar />
+        <TitleBar />
       <MainContent settingsVisible={settingsVisible} />
       {/* <Projects/>
       {settingsVisible &&
@@ -69,6 +89,7 @@ const App: React.FC = () => {
 
 export default hot((): JSX.Element => (<App />));
 
+
 const Wrapper = styled.div`
   display:flex;
   flex-direction: column;
@@ -76,7 +97,9 @@ const Wrapper = styled.div`
   width: 100vw;
 `;
 
-const MainContent = styled.div`
-  position: relative;
-  flex-grow: 1;
-`;
+// const MainContent = styled.div`
+//   position: relative;
+//   flex-grow: 1;
+//   display:flex;
+//   flex-direction: column;
+// `;

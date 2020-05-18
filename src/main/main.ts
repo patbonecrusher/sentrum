@@ -28,8 +28,9 @@ const createWindow = (): void => {
       // nodeIntegration: false, // is default value after Electron v5
       // contextIsolation: true, // protect against prototype pollution
       // enableRemoteModule: false, // turn off remote
-      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY // use a preload script
-    }
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY, // use a preload script
+      nodeIntegration: true,
+    },
   });
 
   // and load the index.html of the app.

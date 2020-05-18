@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from 'styled-components';
-import Draggeable from "./Draggeable";
+import Draggeable from "../Draggeable";
+import Store from "electron-store";
 
 interface Position {
     // value: string | null;

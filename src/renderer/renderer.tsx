@@ -7,7 +7,20 @@ import '../../public/index.scss';
 
 import './global.css'
 
+// import * as storage from 'electron-json-storage';
+// console.log(storage)
 
+// storage.set('foobar', { foo: 'bar' }, function(error) {
+//   if (error) throw error;
+//   console.log('booba')
+// });
+
+// storage.set('blabla', { foo: 'bar' }, function(error) {
+//     if (error) throw error;
+//     console.log('booba')
+//   });
+
+  
 console.log('👋 This message is being logged by "renderer.tsx", included via webpack');
 
 ReactDOM.render(<App/>, document.getElementById('root'));
